@@ -1,8 +1,5 @@
 import random 
 
-# For reproducive results
-#random.seed(5)
-
 class BatAlgorithm():
     def __init__(self, D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, function):
         self.D = D  #dimension
