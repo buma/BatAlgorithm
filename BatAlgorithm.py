@@ -78,7 +78,9 @@ class BatAlgorithm():
                 if rnd > self.r:
                     for j in range(self.D):
                         S[i][j] = self.best[j] + 0.001 * random.gauss(0, 1)
-
+                        S[i][j] = self.simplebounds(S[i][j], self.Lb[j],
+                                                self.Ub[j])
+                        
                 Fnew = self.Fun(self.D, S[i])
 
                 rnd = random.random
