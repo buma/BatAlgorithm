@@ -1,4 +1,5 @@
 import random 
+import numpy as np
 
 class BatAlgorithm():
     def __init__(self, D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, function):
@@ -43,7 +44,7 @@ class BatAlgorithm():
         for i in range(self.NP):
             self.Q[i] = 0
             for j in range(self.D):
-                rnd = random.uniform(0, 1)
+                rnd = np.random.uniform(0, 1)
                 self.v[i][j] = 0.0
                 self.Sol[i][j] = self.Lb[j] + (self.Ub[j] - self.Lb[j]) * rnd
             self.Fitness[i] = self.Fun(self.D, self.Sol[i])
@@ -63,7 +64,7 @@ class BatAlgorithm():
 
         for t in range(self.N_Gen):
             for i in range(self.NP):
-                rnd = random.uniform(0, 1)
+                rnd = np.random.uniform(0, 1)
                 self.Q[i] = self.Qmin + (self.Qmin - self.Qmax) * rnd
                 for j in range(self.D):
                     self.v[i][j] = self.v[i][j] + (self.Sol[i][j] -
@@ -73,7 +74,7 @@ class BatAlgorithm():
                     S[i][j] = self.simplebounds(S[i][j], self.Lb[j],
                                                 self.Ub[j])
 
-                rnd = random.random
+                rnd = np.random.random_sample()
 
                 if rnd > self.r:
                     for j in range(self.D):
@@ -83,7 +84,7 @@ class BatAlgorithm():
                         
                 Fnew = self.Fun(self.D, S[i])
 
-                rnd = random.random
+                rnd = np.random.random_sample()
 
                 if (Fnew <= self.Fitness[i]) and (rnd < self.A):
                     for j in range(self.D):
@@ -95,4 +96,4 @@ class BatAlgorithm():
                         self.best[j] = S[i][j]
                     self.f_min = Fnew
 
-        print self.f_min
+        print(self.f_min)
